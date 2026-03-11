@@ -101,7 +101,7 @@ const protocols = [
     subtitle: "Acide hyaluronique & Botox",
     description:
       "Injections de précision guidées par imagerie 3D. Lèvres, pommettes, ovale du visage — chaque zone est traitée avec des produits premium pour un résultat naturel et harmonieux.",
-    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
+    image: "https://images.pexels.com/photos/3985329/pexels-photo-3985329.jpeg?auto=compress&cs=tinysrgb&w=800",
     artifact: "helix",
     stats: [
       { label: "Soins réalisés", value: "4,200+" },
@@ -114,7 +114,7 @@ const protocols = [
     subtitle: "Technologies de pointe",
     description:
       "Laser fractionné, IPL et radiofréquence pour le rajeunissement cutané. Stimulation du collagène, traitement des taches, lissage des ridules — des résultats visibles dès la première séance.",
-    image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80",
+    image: "https://images.pexels.com/photos/5069612/pexels-photo-5069612.jpeg?auto=compress&cs=tinysrgb&w=800",
     artifact: "grid",
     stats: [
       { label: "Renouvellement collagène", value: "+280%" },
@@ -127,7 +127,7 @@ const protocols = [
     subtitle: "Peelings & Mésothérapie",
     description:
       "Peelings médicaux, skinboosters et mésothérapie pour une peau lumineuse et repulpée. Protocoles personnalisés selon votre type de peau et vos objectifs beauté.",
-    image: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&q=80",
+    image: "https://images.pexels.com/photos/5069432/pexels-photo-5069432.jpeg?auto=compress&cs=tinysrgb&w=800",
     artifact: "ekg",
     stats: [
       { label: "Hydratation", value: "+92%" },
