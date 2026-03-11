@@ -54,14 +54,17 @@ export default function Hero() {
       ref={sectionRef}
       className="relative h-[100dvh] min-h-[600px] flex items-end overflow-hidden"
     >
-      {/* Background image — luxury aesthetic clinic */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80)",
-        }}
-      />
+      {/* Background video — luxury aesthetic clinic */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80"
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="https://assets.mixkit.co/videos/52152/52152-1080.mp4" type="video/mp4" />
+      </video>
 
       {/* Gradient overlays — warm noir/rose tones */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/70 to-[#C4A4A0]/15" />
