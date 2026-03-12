@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Activity, Brain, Calendar } from "lucide-react";
+import { Heart, Brain, Calendar } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,99 +78,95 @@ function DiagnosticShuffler() {
 }
 
 /* ==============================
-   CARD 2 — Telemetry Typewriter
+   CARD 2 — Parcours Beauté (Treatment Journey)
    ============================== */
-function TelemetryTypewriter() {
-  const [currentMessage, setCurrentMessage] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [isTyping, setIsTyping] = useState(true);
+function TreatmentJourney() {
+  const [activeStep, setActiveStep] = useState(0);
 
-  const messages = [
-    "Analyse morphologique 3D en cours...",
-    "Cartographie des volumes faciaux...",
-    "Calibration du protocole acide hyaluronique...",
-    "Évaluation de la qualité cutanée...",
-    "Planification des points d'injection...",
-    "Simulation du résultat post-traitement...",
+  const steps = [
+    { icon: "consult", label: "Consultation", detail: "Bilan personnalisé", duration: "30 min" },
+    { icon: "care", label: "Soin", detail: "Protocole sur mesure", duration: "45 min" },
+    { icon: "glow", label: "Résultat", detail: "Éclat naturel", duration: "Immédiat" },
   ];
 
   useEffect(() => {
-    const msg = messages[currentMessage];
-    let charIndex = 0;
-    setIsTyping(true);
-    setDisplayText("");
-
-    const typeInterval = setInterval(() => {
-      if (charIndex <= msg.length) {
-        setDisplayText(msg.slice(0, charIndex));
-        charIndex++;
-      } else {
-        clearInterval(typeInterval);
-        setIsTyping(false);
-        setTimeout(() => {
-          setCurrentMessage((prev) => (prev + 1) % messages.length);
-        }, 2000);
-      }
-    }, 45);
-
-    return () => clearInterval(typeInterval);
-  }, [currentMessage]);
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % steps.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="space-y-4">
-      {/* Live feed header */}
-      <div className="flex items-center gap-2">
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-rose" />
-        </span>
-        <span className="font-telemetry text-rose text-[10px]">Analyse en cours</span>
-      </div>
+    <div className="space-y-5">
+      {/* Steps timeline */}
+      <div className="relative">
+        {steps.map((step, i) => (
+          <div key={i} className="flex items-start gap-4 relative">
+            {/* Vertical line */}
+            {i < steps.length - 1 && (
+              <div className="absolute left-[17px] top-[36px] w-[2px] h-[calc(100%-8px)]">
+                <div className="w-full h-full bg-stone-light/40 rounded-full" />
+                <div
+                  className="absolute top-0 left-0 w-full bg-rose/60 rounded-full transition-all duration-1000 ease-out"
+                  style={{ height: activeStep > i ? "100%" : "0%" }}
+                />
+              </div>
+            )}
 
-      {/* Terminal */}
-      <div className="bg-charcoal rounded-xl p-4 sm:p-5 font-mono text-sm">
-        <div className="flex items-center gap-2 mb-3 pb-3 border-b border-white/10">
-          <div className="w-2.5 h-2.5 rounded-full bg-rose/80" />
-          <div className="w-2.5 h-2.5 rounded-full bg-stone/40" />
-          <div className="w-2.5 h-2.5 rounded-full bg-stone/40" />
-          <span className="ml-auto font-telemetry text-white/20 text-[9px]">clinique_v3.2</span>
-        </div>
+            {/* Step circle */}
+            <div className={`relative z-10 w-[34px] h-[34px] rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-700 ${
+              activeStep >= i
+                ? "bg-rose/15 border-2 border-rose/40"
+                : "bg-cream-dark border-2 border-stone-light/30"
+            }`}>
+              {step.icon === "consult" && (
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className={`transition-colors duration-500 ${activeStep >= i ? "text-rose-dark" : "text-stone"}`}>
+                  <circle cx="7" cy="4.5" r="2.5" stroke="currentColor" strokeWidth="1.2" />
+                  <path d="M2.5 12.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                </svg>
+              )}
+              {step.icon === "care" && (
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className={`transition-colors duration-500 ${activeStep >= i ? "text-rose-dark" : "text-stone"}`}>
+                  <path d="M7 2.5c1.5-2 4.5-1 4.5 1.5S9 7.5 7 10.5C5 7.5 2 6 2 4s3-3.5 4.5-1.5z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
+              {step.icon === "glow" && (
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className={`transition-colors duration-500 ${activeStep >= i ? "text-rose-dark" : "text-stone"}`}>
+                  <path d="M7 1v2M7 11v2M1 7h2M11 7h2M3 3l1.5 1.5M9.5 9.5L11 11M11 3l-1.5 1.5M4.5 9.5L3 11" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                  <circle cx="7" cy="7" r="2" stroke="currentColor" strokeWidth="1.2" />
+                </svg>
+              )}
+            </div>
 
-        {/* Past messages */}
-        <div className="space-y-1.5 mb-2">
-          {messages
-            .slice(Math.max(0, currentMessage - 2), currentMessage)
-            .map((msg, i) => (
-              <p key={i} className="text-white/20 text-xs">
-                <span className="text-rose-dark/40 mr-2">$</span>
-                {msg}
-                <span className="text-rose-dark/30 ml-2">✓</span>
-              </p>
-            ))}
-        </div>
-
-        {/* Current message */}
-        <p className="text-white/80 text-xs">
-          <span className="text-rose-dark mr-2">$</span>
-          {displayText}
-          {isTyping && (
-            <span className="inline-block w-[6px] h-[14px] bg-rose ml-0.5 animate-blink align-middle" />
-          )}
-        </p>
-      </div>
-
-      {/* Metrics */}
-      <div className="grid grid-cols-3 gap-2">
-        {[
-          { label: "Latence", value: "0.3ms" },
-          { label: "Précision", value: "99.2%" },
-          { label: "Protocoles", value: "147" },
-        ].map((m) => (
-          <div key={m.label} className="text-center p-2 rounded-lg bg-cream-dark/50">
-            <p className="font-telemetry text-stone text-[9px]">{m.label}</p>
-            <p className="text-sm font-semibold text-charcoal mt-0.5">{m.value}</p>
+            {/* Step content */}
+            <div className={`pb-6 transition-all duration-500 ${activeStep >= i ? "opacity-100" : "opacity-40"}`}>
+              <div className="flex items-center gap-2">
+                <p className="text-sm font-medium text-charcoal">{step.label}</p>
+                <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full transition-all duration-500 ${
+                  activeStep === i
+                    ? "bg-rose/15 text-rose-dark"
+                    : "bg-cream-dark text-stone"
+                }`}>{step.duration}</span>
+              </div>
+              <p className="text-xs text-stone mt-0.5">{step.detail}</p>
+            </div>
           </div>
         ))}
+      </div>
+
+      {/* Bottom result preview */}
+      <div className={`rounded-xl bg-gradient-to-r from-rose/8 to-rose-pale/30 border border-rose/10 p-3.5 transition-all duration-700 ${
+        activeStep === 2 ? "opacity-100 translate-y-0" : "opacity-50 translate-y-1"
+      }`}>
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-xs font-medium text-charcoal">Satisfaction patientes</p>
+            <p className="text-[10px] text-stone mt-0.5">Résultats vérifiés à 3 mois</p>
+          </div>
+          <div className="text-right">
+            <p className="text-lg font-bold text-charcoal tracking-tight">98.7%</p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -390,18 +386,18 @@ export default function Features() {
             <DiagnosticShuffler />
           </div>
 
-          {/* Card 2 — Telemetry Typewriter */}
+          {/* Card 2 — Treatment Journey */}
           <div className="feature-card rounded-[2rem] bg-white border border-stone-light/20 p-5 sm:p-6 lg:p-7 overflow-hidden">
             <div className="flex items-center gap-3 mb-5 sm:mb-6">
               <div className="w-10 h-10 rounded-xl bg-rose/10 flex items-center justify-center">
-                <Activity className="w-5 h-5 text-rose" />
+                <Heart className="w-5 h-5 text-rose" />
               </div>
               <div>
-                <h3 className="text-base font-semibold text-charcoal">Suivi Traitement</h3>
-                <p className="text-xs text-stone mt-0.5">Monitoring continu</p>
+                <h3 className="text-base font-semibold text-charcoal">Votre Parcours</h3>
+                <p className="text-xs text-stone mt-0.5">Du diagnostic au résultat</p>
               </div>
             </div>
-            <TelemetryTypewriter />
+            <TreatmentJourney />
           </div>
 
           {/* Card 3 — Cursor Scheduler */}

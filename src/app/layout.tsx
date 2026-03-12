@@ -27,7 +27,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Maison Élara — Clinique d'Excellence Esthétique | Paris",
+  title: "Clinique Élara — Clinique d'Excellence Esthétique | Paris",
   description:
     "Médecine esthétique de précision au cœur de Paris. Protocoles sur mesure, technologies de pointe, résultats naturels.",
 };

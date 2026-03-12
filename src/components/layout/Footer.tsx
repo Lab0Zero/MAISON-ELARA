@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 mb-14 sm:mb-16 md:mb-20">
           {/* Left — Brand */}
           <div>
-            <p className="text-2xl sm:text-3xl font-bold tracking-tight">Maison Élara</p>
+            <p className="text-2xl sm:text-3xl font-bold tracking-tight">Clinique Élara</p>
             <p className="mt-3 text-white/40 text-sm sm:text-[15px] max-w-sm leading-relaxed">
               Médecine esthétique de précision. Où la science rencontre la beauté
               dans sa forme la plus pure.
@@ -90,7 +90,7 @@ export default function Footer() {
           </div>
 
           <p className="text-xs text-white/25 text-center sm:text-left">
-            © {new Date().getFullYear()} Maison Élara. Tous droits réservés.
+            © {new Date().getFullYear()} Clinique Élara. Tous droits réservés.
             Paris, France.
           </p>
 

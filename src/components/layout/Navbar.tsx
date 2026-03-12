@@ -66,7 +66,7 @@ export default function Navbar() {
               scrolled || mobileOpen ? "text-charcoal" : "text-white"
             }`}
           >
-            Maison Élara
+            Clinique Élara
           </Link>
 
           <nav className="hidden md:flex items-center gap-7 lg:gap-9">
